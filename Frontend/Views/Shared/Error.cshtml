@@ -1,0 +1,32 @@
+﻿@model ErrorViewModel
+
+
+@if (ViewBag.message != null)  
+    {  
+        ViewData["Title"] = "Unnable Delete";
+       <h1 class="text-center">Announcement</h1>
+      
+       <h4 class="text-center">Sebelum melakukan penghapusan buku, terlebih dahulu hapus review. <br><br> <a asp-controller="books" asp-action="index" class="btn btn-primary" role="button">Kembali ke halaman utama</a></h4>
+          
+}  else if (!string.IsNullOrEmpty(ViewBag.message))
+{
+    
+    ViewData["Title"] = "Error";
+    
+    <h1 class="text-danger">Error.</h1>
+    <h2 class="text-danger">An error occurred while processing your request.</h2>
+
+    @if (Model.ShowRequestId)
+    {
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+    }
+
+    <h3>Development Mode</h3>
+    <p>
+    @ViewData["message"]
+    </p>
+
+}
+

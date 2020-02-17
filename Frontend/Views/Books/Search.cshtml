@@ -1,0 +1,31 @@
+@model BooksCatalogue.Models.SearchData
+ 
+@{
+    ViewData["Title"] = "Search";
+}
+ 
+<h1>Search</h1>
+ 
+<form class="form-inline" asp-controller="Books" asp-action="Search">
+    <label class="sr-only">Name</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" asp-for="searchText" placeholder="Search...">
+ 
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>
+ 
+@if (Model != null)
+{
+    <div class="card-columns">
+        @foreach(var item in Model.resultList.Results)
+        {
+            <a asp-action="Details" asp-route-id="@item.Document.Id" >
+                <div class="card" style="max-width: 18rem;">
+                    <img src="@item.Document.CoverURL" class="card-img" alt="Image Cover">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">@item.Document.Title</h5>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+}
